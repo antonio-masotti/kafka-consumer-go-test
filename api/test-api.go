@@ -47,7 +47,6 @@ func (p *SampleMessage) ToJsonString() (string, error) {
 func parseBodyAndAddProperty(message string) SampleMessage {
 	var payload SampleMessage
 	fmt.Println("Parsing message", message)
-	//if err := json.Unmarshal([]byte(message), &message);
 	if err := json.NewDecoder(strings.NewReader(message)).Decode(&payload); err != nil {
 		log.Fatal("Error unmarshalling message", err)
 	}

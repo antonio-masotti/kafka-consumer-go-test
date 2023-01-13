@@ -57,3 +57,8 @@ just re-echos back what it got.
 An alternative would have been the much more complex [Postman ECHO API](https://www.postman.com/postman/workspace/published-postman-templates/documentation/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65), a REST API service
 that allows you to test your REST clients and make sample API calls with any methods and
 configuration. It just returns back the request as a response.
+
+
+### Note
+
+The  Kafka local setup is not included in this project, it's just a copy of [this repo](https://github.com/conduktor/kafka-stack-docker-compose/blob/master/full-stack.yml)
