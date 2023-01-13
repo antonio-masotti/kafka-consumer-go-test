@@ -1,6 +1,6 @@
 # Go Kafka consumer
 
-This is a simple Kafka consumer written in Go as test for the [OD-69]() Ticket in the 
+This is a simple Kafka consumer written in Go as test for the [OD-69](https://entwicklung-bikeleasing.myjetbrains.com/youtrack/issue/OD-69/Evaluate-techstacks-for-service-brokers) Ticket in the 
 *Online-Delivery Project*
 
 
