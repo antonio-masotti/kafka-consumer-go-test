@@ -11,10 +11,12 @@ var kafkaServer = "localhost:9092"
 var readTopic = "test-topic"
 var writeTopic = "test-producer"
 
+// main function
+// creates a producer and a consumer
 func main() {
 
 	// READ
-	messages := consumer.ReadFromKafka(kafkaServer, readTopic, 0)
+	messages, _ := consumer.ReadFromKafka(kafkaServer, readTopic, 0)
 
 	// Create Writer
 	w := producer.CreateWriter(kafkaServer, writeTopic)

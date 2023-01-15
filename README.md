@@ -1,7 +1,10 @@
 # Go Kafka consumer
 
-This is a simple Kafka consumer written in Go as test for the [OD-69](https://entwicklung-bikeleasing.myjetbrains.com/youtrack/issue/OD-69/Evaluate-techstacks-for-service-brokers) Ticket in the 
-*Online-Delivery Project*
+This is a playground for a kafka client in Go. 
+It is not intended to be used in production, it's simply a proof of concept. 
+It's one of several consumers we're testing to see which one is the best fit for our needs in the context of the Online Delivery Stack.
+
+See also the same tests in Rust in [kafka-rust-consumer](https://github.com/antonio-masotti/kafka-consumer-rust-test).
 
 
 ## Structure

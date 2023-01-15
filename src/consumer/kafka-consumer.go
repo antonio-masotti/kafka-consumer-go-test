@@ -4,11 +4,21 @@ import (
 	"context"
 	"fmt"
 	"github.com/segmentio/kafka-go"
+	"log"
 )
 
 // Of course to be retrieved from a config file / env variable / etc.
 
-func ReadFromKafka(kafkaServer string, topic string, offset int64) []kafka.Message {
+// ReadFromKafka reads from a kafka topic
+// func ReadFromKafka(kafkaServer string, topic string, offset int64) []kafka.Message {
+// 	r := kafka.NewReader(kafka.ReaderConfig{
+// 		Brokers:   []string{kafkaServer},
+// 		Topic:     topic,
+// 		Partition: 0,
+// 		MinBytes:  10e3, // 10KB
+// 		MaxBytes:  10e6, // 10MB
+// 	})
+func ReadFromKafka(kafkaServer string, topic string, offset int64) ([]kafka.Message, error) {
 	readerConfig := kafka.ReaderConfig{
 		Brokers:     []string{kafkaServer},
 		Topic:       topic,
@@ -17,12 +27,16 @@ func ReadFromKafka(kafkaServer string, topic string, offset int64) []kafka.Messa
 		MaxAttempts: 3,
 	}
 	r := kafka.NewReader(readerConfig)
-
 	if offset > 0 {
 		_ = r.SetOffset(offset)
 	}
 
-	r.FetchMessage(context.Background())
+	_, err := r.FetchMessage(context.Background())
+	if err != nil {
+		log.Fatal(err)
+		return nil, err
+	}
+
 	n := r.Stats().Messages
 	messages := make([]kafka.Message, n)
 
@@ -36,6 +50,6 @@ func ReadFromKafka(kafkaServer string, topic string, offset int64) []kafka.Messa
 	}
 
 	r.Close()
-	return messages
+	return messages, nil
 
 }
