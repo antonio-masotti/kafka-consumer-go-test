@@ -1,4 +1,5 @@
-# Go Kafka consumer
+# Playground - Go Kafka consumer
+![Tests](https://github.com/antonio-masotti/kafka-consumer-go-test/actions/workflows/ci.yml/badge.svg)
 
 This is a playground for a kafka client in Go. 
 It is not intended to be used in production, it's simply a proof of concept. 
