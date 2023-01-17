@@ -1,12 +1,21 @@
 FROM golang:1.19-alpine AS builder
 
 WORKDIR /go/src/github.com/Bikeleasing-Service/kafka-consumer-test-go
+
 COPY . .
-WORKDIR ./src
-RUN go clean && go install
-RUN go mod tidy
-RUN go mod verify
-RUN mkdir ../dist
-RUN CGO_ENABLED=0 go build -a -o ../dist/consumer-test .
-WORKDIR ../dist
+
+ENV SRC_DIR "./src/"
+ENV DIST_DIR "./dist"
+
+WORKDIR "${SRC_DIR}"
+
+RUN go clean && \
+    go install && \
+    go mod tidy && \
+    go mod verify && \
+    mkdir "${DIST_DIR}" && \
+    CGO_ENABLED=0 go build -a -o "${DIST_DIR}/consumer-test" .
+
+WORKDIR "${DIST_DIR}/"
+
 CMD ["./consumer-test"]
