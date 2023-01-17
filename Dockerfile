@@ -4,13 +4,18 @@ WORKDIR /go/src/github.com/Bikeleasing-Service/kafka-consumer-test-go
 
 COPY . .
 
-RUN cd src/ && \
-    go clean && \
+ENV SRC_DIR "./src/"
+ENV DIST_DIR "./dist"
+
+WORKDIR "${SRC_DIR}"
+
+RUN go clean && \
     go install && \
     go mod tidy && \
     go mod verify && \
-    mkdir ../dist && \
-    CGO_ENABLED=0 go build -a -o ../dist/consumer-test . && \
-    cd ../dist \
+    mkdir "${DIST_DIR}" && \
+    CGO_ENABLED=0 go build -a -o "${DIST_DIR}/consumer-test" .
+
+WORKDIR "${DIST_DIR}/"
 
 CMD ["./consumer-test"]
