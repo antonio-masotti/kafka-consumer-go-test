@@ -33,7 +33,7 @@ jobs:
           dockerfile: Dockerfile
           recursive: true
           failure-threshold: error
-      - name: Compile docker image
+      - name: Build docker image
         run: | 
             docker build -t consumer:latest --label test-consumer-go .
             echo "image built, now in real case scenario, please push it to your registry"
